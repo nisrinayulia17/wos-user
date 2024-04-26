@@ -58,6 +58,7 @@ $route['galeri'] = 'BerandaController/galeri';
 $route['faq'] = 'BerandaController/faq';
 
 $route['pertunjukan'] = 'PertunjukanController/index';
+$route['index'] = 'BerandaController/index';
 
 //profil
 $route['profil'] = 'ProfilController/profil';
