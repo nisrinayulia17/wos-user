@@ -55,9 +55,14 @@
         color: #ffffff;
     }
 
-    .menu-ponsel{
+    .menu-ponsel {
         text-decoration: none;
         color: inherit;
+    }
+
+    .centered-text {
+        text-align: center;
+        line-height: inherit;
     }
 </style>
 
@@ -127,14 +132,14 @@
                         </div>
                         <div class="accordion d-lg-none" id="accordionExample">
                             <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
+                                <h2 class="accordion-header centered-text" id="headingOne">
                                     <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <div class="justify-content-center">Hai, Nama!</div>
+                                        <div class="centered-text">Halo,<span id="nama_customer2"></span> </div>
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <a href="<?= base_url('profil') ?>" class="menu-ponsel">Profil</a>
+                                        <a onclick="profil()" class="menu-ponsel">Profil</a>
                                         <hr class="d-lg-none border border-1 my-0 py-0 border-secondary mt-2 mb-2">
                                         <a href="<?= base_url('riwayat') ?>" class="menu-ponsel">Riwayat</a>
                                         <hr class="d-lg-none border border-1 my-0 py-0 border-secondary mt-2 mb-2">
@@ -234,6 +239,10 @@
                                     <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" />
                                     <label for="nama_lengkap">Nama Lengkap</label>
                                 </div>
+                                <div class="form-floating mt-3 mb-2">
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="username" />
+                                    <label for="username">Username</label>
+                                </div>
                                 <div class="form-floating mb-2">
                                     <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" />
                                     <label for="email">Email</label>
@@ -241,10 +250,6 @@
                                 <div class="form-floating mb-2">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Kata Sandi" />
                                     <label for="password">Kata Sandi Baru</label>
-                                </div>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="password_ulang" name="password_ulang" placeholder="Ulangi Kata Sandi" />
-                                    <label for="password_ulang">Ulangi Kata Sandi</label>
                                 </div>
                                 <div class="mt-4 mb-3">
                                     <button class="btn btn-main w-100" type="button" id="btn-daftar">Daftar</button>
@@ -270,13 +275,151 @@
         $('#modalDaftar').modal('show');
     }
 
+    function Daftar() {
+        window.location.href = "<?php echo site_url('register'); ?>";
+    }
+
     function profil() {
-        // Redirect ke halaman profil
-        window.location.href = "<?php echo site_url('profil'); ?>";
+        let id_user = Cookies.get('id_user');
+        location.href = "<?= base_url('profil/') ?>" + id_user
     }
 
     function riwayat() {
         // Redirect ke halaman profil
         window.location.href = "<?php echo site_url('riwayat'); ?>";
     }
+
+    $('#btn-daftar').click(function() {
+        var password = $('#password').val().trim();
+        var nama_lengkap = $('#nama_lengkap').val().trim();
+        var username = $('#username').val().trim();
+        var email = $('#email').val().trim();
+
+        if (email === "" || nama_lengkap === "" || password === "" || username === "") {
+            Swal.fire({
+                title: "Lengkapi Inputan",
+                text: "Lengkapi semua kolom pendaftaran.",
+                icon: "info",
+                confirmButtonColor: "#056BB7"
+            });
+            return false;
+        }
+
+        $.ajax({
+            url: "<?= base_url('user/daftarAkun') ?>",
+            type: "POST",
+            data: $("#frm-daftar :input").serialize(),
+            success: function(response) { // Variabel response didefinisikan di sini
+                if (response.status == 1) {
+                    Swal.fire({
+                        title: "Pendaftaran Berhasil",
+                        text: "Akun berhasil didaftarkan.",
+                        icon: "success",
+                        confirmButtonColor: "#056BB7"
+                    }).then((result) => {
+                        // Redirect ke halaman lain jika diperlukan
+                        window.location.href = "<?= base_url('pertunjukan') ?>";
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Pendaftaran Gagal",
+                        text: "Email sudah terdaftar.",
+                        icon: "error",
+                        confirmButtonColor: "#056BB7"
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+                Swal.fire({
+                    title: "Error",
+                    text: "Terjadi kesalahan dalam pendaftaran.",
+                    icon: "error",
+                    confirmButtonColor: "#056BB7"
+                });
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#login-button').on('click', function() {
+            var email = $('#email_login').val().trim();
+            var password = $('#password_login').val().trim();
+
+            if (email === "" || password === "") {
+                Swal.fire({
+                    title: "Lengkapi Inputan",
+                    text: "Lengkapi semua kolom pendaftaran.",
+                    icon: "info",
+                    confirmButtonColor: "#056BB7"
+                });
+                return false;
+            }
+
+            loginAkun(email, password);
+        })
+    })
+
+    function loginAkun(email, pass) {
+        $.ajax({
+            url: "<?= base_url('user/loginAkun/') ?>" + email + "/" + pass,
+            type: "get",
+            dataType: "JSON",
+            success: function(response) {
+                if (response.status == 1) {
+                    $('#modalLogin').modal('hide');
+                    Swal.fire({
+                        title: "Login Berhasil",
+                        timer: 3000,
+                        showConfirmButton: true,
+                        timerProgressBar: true,
+                        confirmButtonText: "Mulai",
+                        confirmButtonColor: "#056BB7"
+                    }).then(() => {
+                        let url = $(location).attr('href');
+                        window.location.href = "<?= base_url('pertunjukan') ?>";
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Gagal',
+                        text: respinse.info
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Login Gagal',
+                    text: 'Email atau password salah'
+                });
+            }
+        });
+    }
+
+    function logout() {
+        window.location.href = "<?= base_url('logout') ?>";
+    }
+
+    $(document).ready(function() {
+        let id_user = Cookies.get('id_user');
+
+        if (id_user != null && id_user != '') {
+            $.ajax({
+                url: "<?= base_url('user/getCustomerById/') ?>" + id_user,
+                type: "get",
+                dataType: "JSON",
+                success: function(data) {
+                    $('#nama_customer').html(data.username + '!')
+                    $('#nama_customer2').html(data.username + '!')
+                }
+            });
+            $('#menu-login').hide()
+            $('#menu-pengguna').show();
+
+        } else {
+            $('#menu-login').show()
+            $('#menu-pengguna').hide();
+        }
+    })
 </script>

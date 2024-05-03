@@ -61,7 +61,25 @@ $route['pertunjukan'] = 'PertunjukanController/index';
 $route['index'] = 'BerandaController/index';
 
 //profil
-$route['profil'] = 'ProfilController/profil';
+$route['profil/(:any)'] = 'ProfilController/profil/$1';
 $route['riwayat'] = 'ProfilController/riwayat';
-$route['ubahprofil'] = 'ProfilController/ubahprofil';
-$route['gantipassword'] = 'ProfilController/gantipassword';
+$route['ubahprofil/(:any)'] = 'ProfilController/ubahprofil/$1';
+$route['editProfil'] = 'ProfilController/actUbahProfil';
+$route['gantipassword/(:any)'] = 'ProfilController/gantipassword/$1';
+$route['editPassword'] = 'ProfilController/actGantiPassword';
+
+//register
+$route['register'] = 'AkunController/register';
+$route['user/daftarAkun'] = 'UserController/daftarAkun';
+
+$route['user/loginAkun/(:any)/(:any)'] = 'UserController/loginAkun/$1/$2';
+$route['logout'] = 'UserController/logout';
+$route['user/getCustomerById/(:any)'] = 'UserController/getCustomerById/$1';
+
+$route['pilih_kursi'] = 'PertunjukanController/pilih_kursi';
+
+$route['api/getPenggunaBayar/(:any)'] = 'UserController/getPenggunaBayar/$1';
+
+$route['api/bayarTagihan'] = 'MidtransController/bayarTagihanMidtrans';
+
+$route['api/updateKursi'] = 'PembelianController/updateKursi';

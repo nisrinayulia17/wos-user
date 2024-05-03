@@ -59,7 +59,7 @@
             <div class="col-lg-6">
                 <h3 class="text-beranda">Wayang Orang Sriwedari</h3>
                 <div class="keterangan-wayang">Wayang Orang merupakan kesenian yang berasal dari mangkunegaran, yang diciptakan oleh Pangeran Adipati Arya I pada tahun (1757 – 1795). Seperti Wayang Orang Sriwedari (WOS) yang sudah melegenda sejak dulu. Kesenian WOS menyajikan cerita pewayangan dengan seni tari, musik pedalangan dan drama.</br> </br> Pertunjukan Wayang Orang Sriwedari dapat disaksikan setiap hari dengan cerita yang berbeda-beda. Biaya Tiket Masuk Rp20.000</div>
-                <div class="btn btn-tonton rounded-3 d-flex allign-items-center justify-content-center">Tonton Sekarang</div>
+                <div class="btn btn-tonton rounded-3 d-flex allign-items-center justify-content-center" onclick="bukaPertunjukan()">Tonton Sekarang</div>
             </div>
         </div>
     </div>
@@ -92,4 +92,8 @@
             }
         }
     })
+
+    function bukaPertunjukan() {
+        window.location.href = "<?php echo site_url('pertunjukan') ?>";
+    }
 </script>

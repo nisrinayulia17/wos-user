@@ -20,15 +20,19 @@
             <fieldset disabled>
                 <div class="mb-3 mx-3">
                     <label for="disabledTextInput" class="form-label">Nama</label>
-                    <input type="text" id="nama" class="form-control" placeholder="Disabled input">
+                    <input type="text" id="nama" class="form-control" placeholder="<?php echo $profil->nama_lengkap; ?>">
+                </div>
+                <div class="mb-3 mx-3">
+                    <label for="disabledTextInput" class="form-label">Username</label>
+                    <input type="text" id="nama" class="form-control" placeholder="<?php echo $profil->username; ?>">
                 </div>
                 <div class="mb-3 mx-3">
                     <label for="disabledTextInput" class="form-label">Email</label>
-                    <input type="text" id="email" class="form-control" placeholder="Disabled input">
+                    <input type="text" id="email" class="form-control" placeholder="<?php echo $profil->email; ?>">
                 </div>
                 <div class="mb-3 mx-3">
                     <label for="disabledTextInput" class="form-label">Alamat</label>
-                    <input type="text" id="alamat" class="form-control" placeholder="Disabled input">
+                    <input type="text" id="alamat" class="form-control" placeholder="<?php echo $profil->alamat; ?>">
                 </div>
             </fieldset>
         </form>
@@ -41,12 +45,12 @@
 
 <script>
     function gantiPassword() {
-        // Redirect ke halaman profil
-        window.location.href = "<?php echo site_url('gantipassword'); ?>";
+        let id_user = Cookies.get('id_user');
+        location.href = "<?= base_url('gantipassword/') ?>" + id_user
     }
 
     function editProfil() {
-        // Redirect ke halaman profil
-        window.location.href = '<?= base_url('ubahprofil') ?>';
+        let id_user = Cookies.get('id_user');
+        location.href = "<?= base_url('ubahprofil/') ?>" + id_user
     }
 </script>
