@@ -122,4 +122,23 @@ class UserController extends CI_Controller
 
         exit;
     }
+
+    public function getPenggunaBayar2($id_user)
+    {
+        $response = $this->UserModel->getPenggunaBayar($id_user)->row();
+
+
+
+        $this->output
+
+            ->set_status_header(201)
+
+            ->set_content_type('application/json')
+
+            ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+
+            ->_display();
+
+        exit;
+    }
 }

@@ -18,10 +18,12 @@ class ProfilController extends CI_Controller
         $this->load->view('layout/layout', $data);
     }
 
-    public function riwayat()
+    public function riwayat($id_user)
     {
         $data['title'] = 'Riwayat Transaksi';
         $data['halaman'] = 'Profil/riwayat';
+        $data['user'] = $this->UserModel->getCustomerById($id_user)->row();
+        $data['transaksi'] = $this->UserModel->getTransaksi($id_user);
         $this->load->view('layout/layout', $data);
     }
 
@@ -78,5 +80,13 @@ class ProfilController extends CI_Controller
             ->set_output(json_encode($response, JSON_PRETTY_PRINT))
             ->_display();
         exit;
+    }
+
+    public function detailTransaksi($id_order)
+    {
+        $data['title'] = 'Detail Transaksi';
+        $data['halaman'] = 'Profil/detail_riwayat';
+        $data['detail'] = $this->UserModel->getTransaksiById($id_order);
+        $this->load->view('layout/layout', $data);
     }
 }

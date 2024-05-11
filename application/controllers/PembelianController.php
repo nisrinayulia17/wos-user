@@ -46,4 +46,45 @@ class PembelianController extends CI_Controller
             ->_display();
         exit;
     }
+
+    // public function updateKursi2()
+    // {
+    //     // Ambil nomor tiket dari permintaan POST
+    //     $nomorTiket = $this->input->post('nomorTiket');
+
+    //     // Memeriksa apakah nomor tiket tidak kosong
+    //     if (!empty($nomorTiket)) {
+    //         // Panggil model untuk melakukan pembaruan status kursi untuk setiap nomor tiket
+    //         foreach ($nomorTiket as $nomor) {
+    //             $this->PembelianModel->updateKursi2($nomor);
+    //         }
+
+    //         // Menyiapkan respons
+    //         $response = array(
+    //             'Success' => true,
+    //             'Info' => 'Data berhasil diperbarui'
+    //         );
+    //     } else {
+    //         // Penanganan jika nomor tiket kosong
+    //         $response = array(
+    //             'Success' => false,
+    //             'Info' => 'Nomor tiket tidak tersedia'
+    //         );
+    //     }
+
+    //     // Mengirimkan respons dalam format JSON
+    //     $this->output
+    //         ->set_status_header(200)
+    //         ->set_content_type('application/json')
+    //         ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+    //         ->_display();
+    //     exit;
+    // }
+
+    public function invoice()
+    {
+        $data['title'] = 'Invoice';
+        $data['halaman'] = 'Profil/invoice';
+        $this->load->view('layout/layout', $data);
+    }
 }

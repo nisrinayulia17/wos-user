@@ -5,43 +5,41 @@
 </style>
 
 
-<div class="bg-light p-3">
+<div class="bg-light">
     <div class="container">
         <h2 class="text-center text-danger" style="font-weight: bold;">Frequently Asked Questions</h2>
         <hr class="bg-danger border-3 border-top border-danger" />
-
         <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
+            <div class="accordion-item mb-3">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        Accordion Item #1
+                        <strong>Apakah saya perlu mendaftar akun untuk melakukan pembelian tiket?</strong>
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                    <div class="accordion-body">Ya, untuk bisa melakukan pembelian tiket Anda harus login terlebih dahulu. Jika belum memiliki akun, silahkan melakukan pendaftaran terlebih dahulu</div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item mb-3">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        Accordion Item #2
+                        <strong>Bagaimana dengan e-tiket pertunjukan?</strong>
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                    <div class="accordion-body"> Sistem ini belum memiliki fitur untuk generate e-tiket. Silahkan tunjukkan bukti transaksi Anda untuk mendapatkan tiket fisik.</div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item mb-3">
                 <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        Accordion Item #3
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <strong>Accordion #3</strong>
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    <div class="accordion-body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit velit nec ex cursus, a feugiat nisl vestibulum. Integer quis leo ac eros ultricies tempor.</div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>

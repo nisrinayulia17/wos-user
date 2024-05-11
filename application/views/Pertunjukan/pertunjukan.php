@@ -23,7 +23,13 @@
         color: #ffffff;
         margin-top: 12px;
 
+    }
 
+    .btn-beli:hover {
+        background-color: #2c25b3;
+        /* Mengubah warna latar belakang saat hover */
+        color: #fff;
+        /* Mengubah warna teks saat hover */
     }
 
     #sinopsis {
@@ -49,7 +55,7 @@
                 <h2 class="judul-tayangan d-none d-lg-block"><?= $pertunjukan->judul ?></h2>
                 <h2 class="d-lg-none judul-tayangan text-center"><?= $pertunjukan->judul ?></h2>
                 <h6><?= date('d M Y', strtotime($pertunjukan->tanggal)) ?></h6>
-                <h6>Pukul 20.30 WIB</h6>
+                <h6>Pukul <?= date('H:i', strtotime($pertunjukan->waktu)) ?></h6>
                 <div class="btn btn-beli rounded-3 d-none d-lg-block" onclick="cekLogin()">Beli Tiket</div>
                 <div class="btn btn-beli rounded-3 d-lg-none w-100" onclick="cekLogin()">Beli Tiket</div>
                 <h3 class="mt-4" style="font-weight: bold;">Sinopsis</h3>
@@ -64,10 +70,6 @@
                 </ul>
 
             </div>
-
-
-
-
         </div>
     </div>
 </div>

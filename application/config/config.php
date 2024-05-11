@@ -24,7 +24,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://localhost/wayang_orang_sriwedari/';
-'https://nisrinayulia17.github.io/wos-user/';
+// $config['base_url'] = 'http://wos-project-ta.my.id/';
+
 
 /*
 |--------------------------------------------------------------------------

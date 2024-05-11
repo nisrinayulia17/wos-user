@@ -31,7 +31,10 @@
     }
 
     .btn-main:hover {
-        background-color: #dcdcdc;
+        background-color: #2c25b3;
+        /* Mengubah warna latar belakang saat hover */
+        color: #fff;
+        /* Mengubah warna teks saat hover */
     }
 
     .nav-link:hover,
@@ -141,9 +144,9 @@
                                     <div class="accordion-body">
                                         <a onclick="profil()" class="menu-ponsel">Profil</a>
                                         <hr class="d-lg-none border border-1 my-0 py-0 border-secondary mt-2 mb-2">
-                                        <a href="<?= base_url('riwayat') ?>" class="menu-ponsel">Riwayat</a>
+                                        <a onclick="riwayat()" class="menu-ponsel">Riwayat</a>
                                         <hr class="d-lg-none border border-1 my-0 py-0 border-secondary mt-2 mb-2">
-                                        <a>Keluar</a>
+                                        <a onclick="logout()" class="menu-ponsel">Keluar</a>
                                     </div>
                                 </div>
                             </div>
@@ -285,8 +288,8 @@
     }
 
     function riwayat() {
-        // Redirect ke halaman profil
-        window.location.href = "<?php echo site_url('riwayat'); ?>";
+        let id_user = Cookies.get('id_user');
+        location.href = "<?= base_url('riwayat/') ?>" + id_user
     }
 
     $('#btn-daftar').click(function() {
@@ -369,6 +372,7 @@
                 if (response.status == 1) {
                     $('#modalLogin').modal('hide');
                     Swal.fire({
+                        icon: 'success',
                         title: "Login Berhasil",
                         timer: 3000,
                         showConfirmButton: true,

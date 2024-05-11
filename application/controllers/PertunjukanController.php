@@ -25,6 +25,7 @@ class PertunjukanController extends CI_Controller
         $data['halaman'] = 'Pertunjukan/pilih_kursi';
         $data['columns1'] = $this->PertunjukanModel->getKursiByColumn1();
         $data['columns2'] = $this->PertunjukanModel->getKursiByColumn2();
+        $data['pertunjukan'] = $this->PertunjukanModel->getDataPertunjukan();
         $data['tiket'] = $this->PertunjukanModel->getHargaTiket();
 
         $this->load->view('layout/layout', $data);

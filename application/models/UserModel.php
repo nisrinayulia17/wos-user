@@ -11,6 +11,7 @@ class UserModel extends CI_Model
     }
     public $tabel = 'user';
     public $pk_customer = 'id_user';
+    public $tabel_pembelian = 'pembelian';
 
     public function getCustomerByEmail($email)
     {
@@ -77,10 +78,35 @@ class UserModel extends CI_Model
 
     {
 
-        return $this->db->select('nama_lengkap,email')
+        return $this->db->select('id_user, nama_lengkap,email')
 
             ->where('id_user', $id_user)
 
             ->get($this->tabel);
+    }
+
+    function getTransaksi($id_user)
+    {
+        $this->db->select('pembelian.*, pertunjukan.judul, pertunjukan.gambar, pertunjukan.tanggal, pembayaran.total_bayar, pembayaran.kode_status')
+            ->from($this->tabel_pembelian)
+            ->where('id_user', $id_user)
+            ->join('pertunjukan', 'pertunjukan.id_pertunjukan = pembelian.id_pertunjukan')
+            ->join('pembayaran', 'pembayaran.id_order = pembelian.id_order')
+            ->order_by("tgl_pembelian", "desc");
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function getTransaksiById($id_order)
+    {
+        $this->db->select('pembelian.*, pertunjukan.judul, pertunjukan.gambar, pertunjukan.tanggal, pertunjukan.waktu, pembayaran.total_bayar, pembayaran.kode_status, pembayaran.no_va, pembayaran.jenis_pembayaran')
+            ->from($this->tabel_pembelian)
+            ->where("$this->tabel_pembelian.id_order", $id_order)
+            ->join('pertunjukan', 'pertunjukan.id_pertunjukan = pembelian.id_pertunjukan')
+            ->join('pembayaran', 'pembayaran.id_order = pembelian.id_order');
+
+        $query = $this->db->get();
+        return $query->row();
     }
 }

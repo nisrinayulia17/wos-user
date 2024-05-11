@@ -44,6 +44,13 @@
 
     }
 
+    .btn-tonton:hover {
+        background-color: #2c25b3;
+        /* Mengubah warna latar belakang saat hover */
+        color: #fff;
+        /* Mengubah warna teks saat hover */
+    }
+
     .gambar-banner {
         height: 200px;
         width: auto;
